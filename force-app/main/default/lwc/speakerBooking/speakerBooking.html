@@ -1,0 +1,122 @@
+<template>
+    <lightning-card title="Speaker Explorer">
+
+        <div class="slds-grid slds-gutters slds-grid_vertical-align-start">
+
+
+            <div class={leftSectionClass}>
+
+
+                <lightning-input
+                    label="Search by Name"
+                    onchange={handleNameChange}>
+                </lightning-input>
+
+                <lightning-input
+                    label="Search by Speciality"
+                    onchange={handleSpecChange}>
+                </lightning-input>
+
+                <lightning-button
+                    label="Search"
+                    variant="brand"
+                    class="slds-m-top_small"
+                    onclick={handleSearch}>
+                </lightning-button>
+                <lightning-datatable
+                    key-field="Id"
+                    data={speakers}
+                    columns={leftColumns}
+                    onrowaction={handleLeftAction}
+                    class="slds-m-top_medium">
+                </lightning-datatable>
+
+            </div>
+
+
+             <template if:true={showRightSection}>
+    <div class="slds-col slds-size_1-of-2 slds-p-around_medium" style={leftSectionStyle}>
+
+        <lightning-datatable
+            key-field="Id"
+            data={selectedSpeakerData}
+            columns={rightColumns}>
+        </lightning-datatable>
+
+        <lightning-input
+            type="date"
+            label="Select Session Date"
+            min={today}
+            class="slds-m-top_medium"
+            onchange={handleDateChange}>
+            
+        </lightning-input>
+        <!-- <template if:true={showSessionsTable}>
+    <lightning-datatable
+        key-field="Id"
+        data={sessions}
+        columns={sessionColumns}
+        onrowaction={handleSessionAction}
+        class="slds-m-top_medium">
+    </lightning-datatable>
+</template> -->
+
+
+        <lightning-button
+            label="Create Assignment"
+            variant="brand"
+            class="slds-m-top_medium"
+            onclick={handleCreate}
+            disabled={disableCreate}>
+        </lightning-button> 
+
+    </div>
+</template>
+
+
+
+        </div>
+    </lightning-card>
+</template>
+
+
+<!-- <template>
+    <lightning-card title="Speaker Explorer">
+        <div class="slds-grid slds-gutters">
+
+
+            <div class={leftSectionClass}>
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class={searchInputClass}>
+                        <lightning-input label="Search by Name" value={nameKey} onchange={handleNameChange}></lightning-input>
+                    </div>
+                    <div class={searchInputClass}>
+                        <lightning-input label="Search by Speciality" value={specialityKey} onchange={handleSpecChange}></lightning-input>
+                    </div>
+                </div>
+
+                <lightning-button label="Search" variant="brand" class="slds-m-top_small" onclick={handleSearch}></lightning-button>
+
+                <lightning-datatable key-field="Id" data={speakers} columns={leftColumns} hide-checkbox-column
+                    onrowaction={handleRowAction} class="slds-m-top_medium">
+                </lightning-datatable>
+            </div>
+
+            <template if:true={showRightSection}>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_medium">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">Book Session</h3>
+
+                    <lightning-datatable key-field="Id" data={selectedSpeakerData} columns={rightColumns} hide-checkbox-column>
+                    </lightning-datatable>
+
+                    <lightning-input type="date" label="Select Session Date" min={today} class="slds-m-top_medium" onchange={handleDateChange}></lightning-input>
+
+                    <lightning-button label="Create Assignment" variant="brand" class="slds-m-top_medium"
+                        onclick={handleCreate} disabled={disableCreate}>
+                    </lightning-button>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template> -->
